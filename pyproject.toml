@@ -9,7 +9,40 @@ packages = [{include = "type_challenges"}]
 [tool.poetry.dependencies]
 python = "^3.10"
 
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.15.0"
+black = "^25.1.0"
+isort = "^6.0.1"
+flake8 = "^7.2.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black"
+line_length = 100
+src_paths = ["log_analyzer", "tests"]
+skip_gitignore = true
+filter_files = true
+
+[tool.black]
+line-length = 100
+exclude = '''
+/(
+\.git
+| \.hg
+| \.mypy_cache
+| \.tox
+| \.venv
+| _build
+| build
+| dist
+)/
+'''
+
+[tool.mypy]
+exclude = []
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
